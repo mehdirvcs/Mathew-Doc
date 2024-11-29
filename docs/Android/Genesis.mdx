@@ -1,0 +1,51 @@
+---
+sidebar_position: 1
+id: my-doc-id
+title: Genesis
+description: This is the Technical Design Website for Project James
+---
+
+# Genesis
+
+What are we doing here?
+
+## In the Beginning
+
+There's this app called Boat-It and we want to make an iOS version of it. So let's begin.
+
+## Create the Heavens and the Earth
+
+To build this creation, we'll be using the following tools:
+* IDE
+  * [Android Studio](https://developer.android.com/studio/intro) specifically Android Studio Bumblebee (2021.1.1) Patch 3
+    * Installer for Mac Apple Silicon [here](https://redirector.gvt1.com/edgedl/android/studio/install/2021.1.1.23/android-studio-2021.1.1.23-mac_arm.dmg)
+    * Installer for Mac Intel [here](https://redirector.gvt1.com/edgedl/android/studio/install/2021.1.1.23/android-studio-2021.1.1.23-mac.dmg)
+* Text editor
+  * [VSCode](https://git-scm.com/download/mac)
+* Documentation
+  * [Docusaurus](https://docusaurus.io/docs)
+* Gitlab for our Git hosting services. [*Find the repo here*](https://gitlab.com/solace-studios/boat-it_ios)
+* [Git CLI](https://git-scm.com/download/mac) for git functionality. For visualization, you may use VSCode or Android Studio.
+* For dependency management, we'll be using [gradle](https://gradle.org)
+* Package management
+  * [Homebrew](https://brew.sh)
+  * [SDKMAN](https://sdkman.io)
+
+## The Earth was without form and void
+
+The architecture of our app will be using [RIBs](https://github.com/uber/RIBs). What we'll do first is create a more general decision tree 
+and from there break down that tree into a RIB tree, seperating concerns into different RIBs where it makes sense. We'll also be documenting the different streams
+of data that the RIBs will be working with. So we can see what RIBs need what components from their parents. 
+
+## Darkness was upon the face of the deep
+
+The dependencies we'll be using include 
+* Navionics SDK
+* Google Maps SDK
+* For Networking: RxJava
+* Braintree
+* MySQL for Database
+* PHP for webadmin 
+* Dependency injection RxJava
+* [Ramotion UI Kit Components](https://github.com/Ramotion/android-ui-animation-components-and-libraries)
+

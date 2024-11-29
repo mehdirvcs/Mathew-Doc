@@ -1,0 +1,149 @@
+---
+sidebar_position: 1
+id: my-doc-id2
+title: Genesis
+description: My document description
+---
+
+# Genesis
+
+What are we doing here?
+
+## In the Beginning
+
+There's this app called Boat-It and we want to make an iOS version of it. So let's begin.
+
+## Create the Heavens and the Earth
+
+To build this creation, we'll be using the following tools:
+* IDE
+  * [Xcode](https://developer.apple.com/xcode/) 
+    * Requires Apple ID setup, [help on how to create one here](https://support.apple.com/en-us/HT204316)
+* Text editor
+  * [VSCode](https://git-scm.com/download/mac)
+* Documentation
+  * [Docusaurus](https://docusaurus.io/docs)
+* Gitlab for our Git hosting services. [*Find the repo here*](https://gitlab.com/solace-studios/boat-it_ios)
+* [Git CLI](https://git-scm.com/download/mac) for git functionality. For visualization, you may use VSCode.
+* For dependency management, we'll likely be using:
+  * [Cocoapods](https://guides.cocoapods.org/using/getting-started.html)
+  * [Carthage](https://github.com/Carthage/Carthage#quick-start)
+  * [Swift Packages](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app)
+* Package management
+  * [Homebrew](https://brew.sh)
+  * [SDKMAN](https://sdkman.io)
+
+## The Earth was without form and void
+
+The architecture of our app will be using [RIBs](https://github.com/uber/RIBs). What we'll do first is create a more general decision tree 
+and from there break down that tree into a RIB tree, seperating concerns into different RIBs where it makes sense. We'll also be documenting the different streams
+of data that the RIBs will be working with. So we can see what RIBs need what components from their parents. 
+
+## Darkness was upon the face of the deep
+
+The dependencies we'll be using include 
+* Navionics SDK
+* Google Maps SDK
+* UIKit
+* RxSwift
+* Braintree
+* MySQL for Database
+* PHP for webadmin 
+* Dependency injection RxSwift/RxCocoa
+* [Ramotion UI Kit Components](https://github.com/Ramotion/swift-ui-animation-components-and-libraries) for UI
+
+
+## The Spirit of God was moving over the face of the waters
+
+The current app's is architected as a set of view controllers. 
+These view controllers make webservice calls and communicate data that data to the screen.
+
+### List of webservice calls
+
+#### View Controllers Around Chatting
+* Rid_Cap_Message_AdminVC.m
+  * webserviceCallForListMessage
+  * webserviceCallForSendMessage_Admin
+* Rider_messageVController.m
+  * webserviceCallFor_chating_Rider
+  * webserviceCallFor_chat_To_Captain
+* Captain_MessageVController.m
+  * webserviceCallFor_chating
+  * webserviceCallFor_chat_To_Captain
+* ChatViewController.m
+  * webserviceCallForListMessage
+  * webserviceCallForSendMessage
+    * self webserviceCallForSendMessage:text:@"text"];
+    * webserviceCallForSendMessage :(NSString *)send_message :(NSString *)message_type
+  
+#### Payment History, Notifications, Faq, Feedback VC's
+* RiderPaymentHistoryVC.m
+  * webserviceCallForTripList
+* CNotificationViewController.m
+  * webserviceCallForTripList
+* FaqViewController.m
+  * webserviceCallForFaqList
+  * webserviceCallForFaqDetails
+* FeedbackViewController.m
+  * webserviceCallForFeedback
+
+#### VC's about Signing In and Registration
+* LeftViewController.m
+  * webserviceCall_Riderlogout
+  * webserviceCall_CaptainLogout
+* LoginRegisterViewController/ForgotPasswordViewController.m
+  * webserviceCallFor_Forgot_Password
+* LoginRegisterViewController/BoaterRegistrationViewC.m
+  * webserviceCallFor_StatesList
+  * webserviceCallForRegister
+* LoginRegisterViewController/LoginViewController.m
+  * webserviceCallForLogin
+* LoginRegisterViewController/RegisterViewController.m
+  * webserviceCallForRegister
+* LoginRegisterViewController/CaptainRegistrationViewC.m
+  * webserviceCallFor_BoatList
+  * webserviceCallForRegister
+
+#### RiderAppProcess VC's
+* BookingViewController/BookStep3ViewController.m
+  * webserviceCallForCaptainList
+  * webserviceCallForCaptainList_afterKill
+  * webserviceCallForBooking
+  * webserviceCallForToken
+  * webserviceCallForPayment
+* BookingViewController/PickupDropViewController.m
+  * webserviceCallForPickList
+  * webserviceCallForDropList
+* MyTripsViewController.m
+  * webserviceCallForTripList
+* BusinessAdsViewController.m
+  * webserviceCallForAdsList
+* TrackRideViewController.m
+  * webserviceCallForCaptain_startRide_afterKill
+  * webserviceCallForPayment
+* EditProfileViewController.m
+  * webserviceCallForViewProfile
+  * webserviceCallFor_StatesList
+  * webserviceCallForEditProfile
+* RideDetailViewController.m
+  * webserviceCallForCaptain_startRide_afterKill
+  * webserviceCallForTripDetails
+
+#### CaptainAppProcess VC's
+* CRideDetailViewController/CRideDetailViewController.m
+  * webserviceCallForTripDetails
+  * webserviceCallForTripAboard
+  * webserviceCallForTripStart
+  * webserviceCallForTripEnd
+* CRideDetailViewController/CAllRidersViewController/CAllRidersViewController.m
+  * webserviceCallForAllRiders
+* CEditProfileViewController.m
+  * webserviceCallForViewProfile
+  * webserviceCallForEditProfile
+* CMoneyViewController.m
+  * webserviceCallForGetPaypal
+  * webserviceCallForPaypal
+  * webserviceCallForGetCaptainAmount
+* CMyTripsViewController.m
+  * webserviceCallForTripList
+

@@ -1,0 +1,113 @@
+---
+slug: hello-again
+title: Hello Again
+authors: mm
+tags: [hello]
+---
+
+## Intro
+
+Hello again! Just like I said last week, I'm making another blog post this saturday morning. 
+I've tried doing dev blog posts before, it hasn't worked. I would get distracted or forget to do them.
+But this time I'm gonna stick with it by the grace of God. 
+
+## You Have the Words of Eternal Life
+
+> *Jesus said to the twelve, “Will you also go away?” 
+ Simon Peter answered him, “Lord, to whom shall we go?* ***You have the words of eternal life*** *; 
+  and we have believed, and have come to know, that you are the Holy One of God.”* 
+
+> **John 6:67-69**
+
+Jesus gives this long discourse on the eucharist to the jews. He explains that this unleavend bread truly
+is His body and this wine truly is His blood. Many jews and his own disciples leave Him because of this.
+Jesus asks His Apostles if they will leave too. But St. Peter speaking for them all says "Lord to whom shall we go?
+You have the words of eternal life". He's given it all up to the Lord. For better or worse, at least in an earthly sense,
+he has chosen Jesus. 
+
+I have come to believe and know that you are the Holy One of God. When things get tough, I don't shrink or run from you. 
+I lean in deeper. I swim faster and faster, deeper
+and deeper down the depths of your ocean of mercy. I praise you for the humility you've brought me. I am yours and you are mine.
+I choose you Jesus.
+
+## We are the People of His Pasture
+
+This one comes from [Lauds](https://universalis.com/0/i-lauds.htm) today 
+
+> *O come, let us worship and bow down,
+    let us kneel before the Lord, our Maker!
+  For he is our God,
+    and* ***we are the people of his pasture*** *,
+    and the sheep of his hand.*
+
+> **Psalm 95:6-7**
+
+It's okay. It's okay to not know. To not know what to do next all the time. There are times when I don't know
+what to do. But precisely in the measure I trust in God's goodness to reveal to me what I should do, 
+is the measure that it becomes more clear. Jesus is the light of the world, in Him we move and have our being.
+He will certainly give us light on what to do when we ask in simplicity and humility. 
+
+## Humility Goes Before Honor
+
+> *Before destruction a man’s heart is haughty,
+    but* ***humility goes before honor*** *.*
+
+> **Proverbs 18:12**
+
+This was the first week of Technical Design. 
+First on the agenda was to list out dependencies for iOS and Android so we can properly organize the RIB tree.
+To that end, we first had to confirm RIBs is the architecture we were going with. I had concerns about handling screen transitions,
+process death (recovering from the Android OS killing the app in the background), and the activity of the repo in getting questions answered.
+
+I explored a few different options. Kotlin MultiPlatform (KMP) was something I was very interested in. I decided not to go with it. 
+KMP has a lot of potential, but has been in alpha the last 5 years. When an API is in alpha, it means they 
+may introduce "breaking changes". This is where upgrading to a newer version of KMP would provide greater features,
+but these greater features would require a lot of investment to integrate and your project in its current state would be broken.
+It's also very complicated to know what belongs in the native code sections and what belongs in the shared section.
+I haven't seen many large scale apps using RIBs or a similar scalable architecture with KMP
+Without clear guidelines on how to do that, it would be better to abstain from that. 
+I also was concerned about the ability to bring on new engineers. The foundational principle that drives all my architecture
+decisions is scalability. If God graces this endeavor enough to be able to bring other people on to work on it, they need to be
+able get up to speed and be able to contribute in a meaningful way as soon as possible. As KMP is in alpha, there isn't a lot
+of engineers who use it, very very few at scale and obviously no one uses it at scale in it's beta or release form as those 
+don't exist yet.
+
+I also looked into flutter. With flutter, I'd be able to write a lot of code once and minimize the amount of native code in the project.
+It also has a JIT compiler which makes development very fast. You can see changes immediatelyIt looks very cool. 
+But there's only one hobby project using RIBs and flutter
+and I don't see any companies using it at scale with a similar architecture. It would also increase the amount of languages I'd need to know.
+With KMP, I could write shared code in Kotlin, android code in Kotlin, and iOS code in Swift. But with flutter, I'd have to write
+all the shared code in Dart (which I have no experience with). Cool idea, not for this project though.
+
+There was also [DeCompose](https://github.com/arkivanov/Decompose). One of the things I was really interested in was upgrading on Android from developing UI in xml to Jetpack Compose
+and on iOS from UIKit to SwiftUI. DeCompose has a similar architecture to RIBs, more extendable, and uses both SwiftUI and Jetpack Compose.
+I was also worried about how RIBs would handle Process Death since I talked to some people and said you cannot save state if you 
+are using RIBs. But I found out I can save the necessary states in User Preferences. DeCompose also has no substantial examples using both Android and iOS that I have found.
+There's also the lack of tooling.
+So while I'd like to migrate to SwiftUI and Compose in the future, it would be too much of a risk to start with it now.
+
+So we're going with RIBs! Swift for iOS, for the moment Kotlin for android. 
+I have a list of Kotlin RIBs examples I'm going to go through to confirm that. 
+I also upgraded RIBs/Buck/Needle on Swift to 0.13.0. I hope to do the same with android.
+ I also finalized other dependencies for things like mapping, payment api, dependency injection, and UI toolkit.
+
+The final dependencies to worry about is communicating with the web server. I documented all the webservice calls for the current app.
+What they do, what they send, what they receive, and what they do in response. 
+
+Looking through the code of someone else, it can be a near occassion of sin. Thoughts of how you would do something different
+come to mind. But give someone the mercy and grace that you would like to receive in return. If we are humble, 
+honor will follow. 
+
+## Draw Near to the Throne of Grace
+
+> *“Let us then with confidence* ***draw near to the throne of grace*** *, that we may receive mercy and find grace to help in time of need."*
+
+> **Hebrews 4:16**
+
+I'm ready to draw near to the throne of grace. Thank you God for pouring out your mercy on me. Jesus I trust in you.
+
+ That's all for now, thank you :) I love you God
+
+ PB2G TYSJ
+
+ +JMJ

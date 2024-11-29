@@ -1,0 +1,91 @@
+---
+sidebar_position: 1
+id: my-rib-tree
+title: Tree of Life
+description: This is RIB Tree for Project James
+---
+
+
+# Root
+
+root rib, 
+
+## LoggedOut
+
+initialize shared preferences/user defaults, check for user permissions, pass logged in token to logged in
+
+### RoleSelect
+
+# Root
+root rib, route to LoggedOut RIB
+
+## LoggedOut 
+
+initialize shared preferences/user defaults, check for user permissions, pass logged in token to logged in
+
+### RoleSelect
+
+Switch between Captain and Voyager roles and route to appropriate sign in screen or sign up screen. Will detach sign in ribs if on sign up screen and vice versa.
+
+#### Forgot Password
+
+Displays Form where you type in your email and you can request a password recovery email
+
+#### CaptainSignup
+
+Display Captain signup screen fields and call webserviceCallForRegister (Captain version captainRegisterApi)
+
+#### CaptainSignin
+
+Display Captain signin fields and call webserviceCallForLogin
+
+#### VoyagerSignup
+
+Display Voyager signup screen fields and call webserviceCallForRegister (Voyager version riderRegisterApi)
+
+#### VoyagerSignup
+
+Display Voyager signin fields and call webserviceCallForLogin
+
+
+## LoggedIn
+
+Handling user-roles, dependent menus, and services
+
+### WheelMenu
+
+
+
+#### Map
+#### Explore
+#### Filters
+#### FriendsList
+#### PastVoyages
+#### Account
+### Map
+#### UserLocation
+#### MapBusinessCard
+##### BusinessCardImages
+##### BusinessCardTitle
+##### BusinessCardAddToDestination
+##### BusinessCardAddToFavorites
+#### Searchbar
+##### SearchBarPickup
+###### NearestPickupFinder
+##### SearchBarDestination
+### NavigatorWheel
+#### WheelNotifications
+##### FriendRequestNotification
+##### BusinessUpdateNotification
+##### DockInviteNotification
+##### VoyageInviteNotification
+#### MapFilters
+#### Profile
+#### Settings
+#### Map
+### VoyageCreator
+#### InviteFriendToVoyage
+##### FriendsList
+###### SendVoyageInvite
+#### VoyageDestinationCard
+#### NavigatorWheel

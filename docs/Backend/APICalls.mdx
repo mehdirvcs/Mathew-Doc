@@ -1,0 +1,1375 @@
+---
+sidebar_position: 1
+id: api-calls
+title: API Calls
+description: This document describes the API calls the app uses
+---
+
+## API Calls
+
+Description: This document describes the API calls the app uses
+
+## Registering
+
+### RiderRegisterApi
+
+Description: Called by rider, registers rider account information, hashes password in md5, saves user meta data in user_metas,
+creates rider in users table, sends registration email, create customer payment data entry with braintree, and responds with user data
+
+Route: GET     '/admin/riderRegisterApi'
+
+       POST    '/admin/riderRegisterApi'
+
+Location: 'Admin\ApiController@RiderRegisterApi'
+
+Request:
+
+    "billing_city"
+    "billing_state"
+    "billing_zip"
+    "card_holder_name" 
+    "card_number"
+    "current_lat"
+    "current_long"
+    "cvv"
+    "date_of_birth"
+    "device_token"
+    "device_type"
+    "email"
+    "expirationDate"
+    "firstname"
+    "lastname"
+    "password"
+    "phonenumber"
+    "type"
+    "username"
+
+Response:
+
+    message
+    success
+    data {
+        "createdat"
+        "email"
+        "firstname"
+        "id"
+        "lastname"
+        "phonenumber"
+        "status"
+        "useraddress"
+        "usercity"
+        "usercountry"
+        "userimage"
+        "userstate"
+        "userzipcode"
+    }
+
+### CaptainRegisterApi
+
+Description: Called by captain, registers captain account information, hashes password in md5, saves user meta data in user_metas,
+creates rider in users table, sends registration email, create customer payment data entry with braintree, and responds with user data
+
+Route:
+
+       GET     '/admin/captainRegisterApi'
+
+       POST    '/admin/captainRegisterApi'
+
+Location: 'Admin\ApiController@CaptainRegisterApi'
+
+Request:
+
+    "boat_capacity"
+    "boat_insurance_company"
+    "boat_make"
+    "boat_registration_hull_number" 
+    "boat_size"
+    "boat_year"
+    "current_lat"
+    "current_long"
+    "date_of_birth"
+    "device_token"
+    "device_type"
+    "email"
+    "firstname"
+    "insurance_exp_date"
+    "insurance_policy_number"
+    "lastname"
+    "license_exp_date"
+    "license_number"
+    "name_of_your_boat"
+    "password"
+    "paypal_email"
+    "phonenumber"
+    "registration_exp_date"
+    "type"
+    "type_of_license"
+    "username"
+    "years_as_captain"
+
+Response:
+
+    message
+    success
+    user_type
+    data{
+        "createdat"
+        "email"
+        "firstname"
+        "id"
+        "lastname"
+        "phonenumber" 
+        "status"
+        "useraddress" 
+        "usercity"
+        "usercountry" 
+        "userimage"
+        "userstate"
+        "userzipcode" 
+    }
+
+
+## Log In/Out
+
+### CaptainLoginApi
+
+Description: Logging in as captain
+
+Route: GET     '/admin/captainLoginApi'
+
+Location: 'Admin\ApiController@CaptainLoginApi'
+
+Request:
+
+    username
+    password
+    device_token
+    device_type
+
+Response:
+
+    message
+    success
+    data{
+        id
+        is_logged_in
+        firstname
+        last_name
+        id
+        firstname
+        lastname
+        phonenumber
+        email
+        usercountry
+        userstate
+        usercity
+        userimage
+        useraddress
+        status
+        userzipcode
+        createdat
+    }
+
+### RiderLoginApi
+
+Description: Logging in as rider
+
+Route: GET     '/admin/riderLoginApi'
+
+Location: 'Admin\ApiController@riderLoginApi'
+
+Request:
+
+    username
+    password
+    device_token
+    device_type
+
+Response:
+
+    message
+    success
+    data{
+        id
+        firstname
+        lastname
+        phonenumber
+        email
+        usercountry
+        userstate
+        usercity
+        userimage
+        useraddress
+        status
+        userzipcode
+        createdat
+    }
+
+### LoginApi
+
+Description: Logging in either as captain or rider
+
+Route: ANY     '/admin/LoginApi'
+
+Location: 'Admin\ApiController@LoginApi'
+
+Request:
+
+    'current_lat'
+    'current_long' 
+    'device_token'
+    'device_type'
+    'password'
+    'type'
+    'username'
+
+Response:
+
+    message
+    success
+    data {
+            rating
+            user_type  
+            id
+            firstname
+            lastname
+            phonenumber
+            email
+            usercountry
+            userstate
+            usercity
+            userimage
+            useraddress
+            status
+            activation
+            userzipcode
+            createdat  
+    }
+
+### captainLogout
+
+Description: logging out as captain
+
+Route: GET     '/admin/captain-logout'
+
+       POST    '/admin/captain-logout'
+
+Location: 'Admin\ApiController@captainLogout'
+
+Request:
+
+    user_id
+
+Response:
+
+    message
+    success
+
+### riderLogout
+
+Description: logging out as rider
+
+Route: GET     '/admin/rider-logout'
+
+       POST    '/admin/rider-logout'
+
+Location: 'Admin\ApiController@riderLogout'
+
+Request:
+
+    user_id
+
+Response:
+
+    message
+    success
+
+### LogoutApi
+
+Description: Logging out as either captain or rider
+
+Route: GET     '/admin/LogoutApi'
+
+Location: 'Admin\ApiControllerForBookings@LogoutApi'
+
+Request:
+
+    user_id
+    user_type
+
+Response:
+
+    message
+    success
+
+### captainForgetpasswordApi
+
+Description: Send forget password email as captain
+
+Route: GET     '/admin/captainForgetpasswordApi'
+
+Location: 'Admin\ApiController@captainForgetpasswordApi'
+
+Request:
+
+    email
+
+Response:
+
+    message
+    success    
+
+### riderForgetpasswordApi
+
+Description: Send forget password email as rider
+
+Route: GET     '/admin/riderForgetpasswordApi'
+
+Location: 'Admin\ApiController@riderForgetpasswordApi'
+
+Request:
+
+    email
+
+Response:
+
+    message
+    success    
+
+### ForgetpasswordApi
+
+Description: Send forget password email as captain or rider
+
+Route: GET     '/admin/ForgetpasswordApi'
+
+Location: 'Admin\ApiController@ForgetpasswordApi'
+
+Request:
+
+    email
+    type
+
+Response:
+
+    message
+    success 
+
+## Booking 
+
+### DirListingApi
+
+Description: Called by rider, gets list of businesses to promote to the user within a certain distance from businessdirs table. data 
+is an array of businessdirs records
+
+Route: GET     '/admin/DirListingApi'
+
+Location: 'Admin\ApiControllerRideFinal@DirListingApi'
+
+Request:
+
+    ride_id
+
+Response:
+
+    {
+        message
+        success
+        data[{
+            'businesscategory'
+            'businessname'
+            'latitude'
+            'distance'
+            'longitude'
+            'address'
+            'city'
+            'state'
+            'zip'
+            'phone'
+            'dirimg'
+            'featured_rotation'
+            'firstname'
+            'lastname'
+            'emailaddress'
+            'adurl'
+            'adstart_date'
+            'adend_date'
+            'admonthly_revenue'
+            'adtotal_revenue'
+            'added_date'
+        }]
+    }
+
+
+
+### PickupLocationApi
+
+Description: Gets list of locations
+
+Route: GET     '/admin/PickupLocationApi'
+
+Location: 'Admin\ApiController@PickupLocationApi'
+
+Request:
+
+    user_id
+
+Response:
+
+    message
+    success
+    data
+    {
+        "added_date"
+        "address"
+        "city"
+        "id"
+        "latitude"
+        "location_name"
+        "longitude"
+        "rider_id"
+        "shoreline"
+        "state"
+        "zip"
+        "zone"
+    }
+
+### DropLocationApi
+
+Description: Gets list of locations, excluding the pickup_location_id sent
+
+Route: GET     '/admin/DropLocationApi'
+
+Location: 'Admin\ApiController@DropLocationApi'
+
+Request:
+
+    user_id
+    pickup_location_id
+
+Response:
+
+    message
+    success
+    data
+    {
+        "added_date"
+        "address"
+        "city"
+        "id"
+        "latitude"
+        "location_name"
+        "longitude"
+        "rider_id"
+        "shoreline"
+        "state"
+        "zip"
+        "zone"
+    }
+
+### AvailableCaptainBookRequst
+
+Description: Make a booking request to a captain
+
+Route: GET     '/admin/AvailableCaptainBookRequst'
+
+       POST    '/admin/AvailableCaptainBookRequst'
+
+Location: 'Admin\ApiController@AvailableCaptainBookRequst'
+
+Request:  
+
+    'source_address'
+    'destination_address'
+    'source_lat'
+    'source_long'
+    'destination_lat'
+    'destination_long'
+    'rider_id'
+    'no_of_seats'
+    'pickup_date_time'
+    'captain_id'
+    'total_price'
+
+Response:
+
+    message
+    success
+
+### RiderBookingApi
+
+Description: Insert booking data into database
+
+Location: 'Admin\ApiController@RiderBookingApi'
+
+Address: '/admin/RiderBookingApi', 
+
+
+Request:
+
+        source_address         
+        destination_address    
+        source_lat             
+        source_long            
+        destination_lat        
+        destination_long       
+        captain_id             
+        ride_status            
+        rider_id               
+        no_of_seats            
+        pickup_date_time       
+        drop_date_time         
+        total_price            
+Response:
+
+        message
+        success
+
+### AvailableCaptainListApi
+
+Description: Get list of available captains
+
+Route: GET     '/admin/availableCaptainListApi'
+
+Location: 'Admin\ApiController@AvailableCaptainListApi'
+
+Request:
+
+    "destination_address"
+    "destination_lat"
+    "destination_long"
+    "no_of_seats"
+    "pickup_date_time"
+    "rider_id"
+    "source_address"
+    "source_lat"
+    "source_long"
+
+Response:
+
+        message
+        success
+
+### CaptainNotificationApi
+
+Description: Called by captain, gets list of bookings available for captain to accept,
+Query temp_rides table where parent_ride_id is null using captain id as key and rides table for where ride_status is 0 and captain id as key
+for ride details.  
+
+
+Route: GET     '/admin/CaptainNotificationApi'
+       POST    '/admin/CaptainNotificationApi'
+
+Location: 'Admin\ApiController@CaptainNotificationApi'
+
+Request:
+
+    captain_id
+
+Response:
+
+    message
+    success
+    data[{
+        'id'
+        'ride_id'
+        'source_address'
+        'destination_address
+        'source_lat'
+        'source_long'
+        'destination_lat'
+        'destination_long'
+        'captain_id'
+        'payment_status'
+        'ride_status'
+        'rider_id'
+        'no_of_seats'
+        'total_price'
+        'pickup_date_time'
+        'drop_date_time'
+        'read_status'
+        'added_date'
+        'firstname'
+        'ride_auto_id'
+        'parent_ride_id'
+    }]
+
+### CaptainAccOrDecRequst
+
+Description: On captain accept, send notification to rider to pay, send email to admin about ride
+
+Route: GET     '/admin/CaptainAccOrDecRequst'
+
+Location: 'Admin\ApiControllerForBookings@CaptainAccOrDecRequst'
+
+Request:
+
+    rider_id
+    pickup_date_time
+    captain_id
+    accept_or_decline
+    ride_id
+    ride_auto_id
+
+Response:
+
+    message
+    total_price
+    phone_rider
+    success
+    data{
+        captain_name
+        rider_name
+        point_location_1
+        point_location_2
+        passengers
+        name
+        email 
+        phone
+    }
+    
+
+### RiderNotificationApi
+
+Description: Gets rider booking listings
+
+Route: GET     '/admin/RiderNotificationApi'
+
+Location: 'Admin\ApiController@RiderNotificationApi'
+
+Request:
+
+    ride_id
+    rider_id
+
+Response:
+
+    message
+    success
+    data {[
+        id
+        ride_id
+        source_address
+        destination_address
+        source_lat
+        source_long
+        destination_lat
+        destination_long
+        captain_id
+        payment_status
+        ride_status
+        rider_id
+        no_of_seats
+        total_price
+        pickup_date_time
+        drop_date_time
+        read_status
+        added_date
+    ]}
+
+## Ride Management
+
+### StartAboardApi
+
+Description: Updates aboard field in ride_mains table using ride_id as key
+
+Route: GET     '/admin/StartAboardApi'
+
+Location: 'Admin\ApiControllerRideFinal@StartAboardApi'
+
+Request:
+
+    ride_id
+    aboard
+
+Response:
+
+    message
+    success
+
+
+### StartRideNowApi
+
+Description: Uses ride_id to index into ride_mains and rides table. Gets rider info from rides table, gets captain info from ride_mains table
+Sets captain booking status to booked.
+
+Route: GET     '/admin/StartRideNowApi'
+
+Location: 'Admin\ApiControllerRideFinal@StartRideNowApi'
+
+Request:
+
+    ride_id
+
+Push Notification:
+
+    {
+        message
+        {
+            to
+            notification
+            {
+                title
+                message
+            }
+            data
+            {
+                ride_id
+                notify_for
+                notify_type
+                notification_type
+            }
+        }
+    }
+
+Response:
+
+    success
+    message
+
+### EndRideNowApi
+
+Description: Uses ride_id to index into ride_mains and rides table. Gets rider info from rides table, gets captain info from ride_mains table
+Sets captain booking status to available, sets ride_status in rides and ride_mains by ride_id
+to "completed" and drop date time to current time.
+
+Route: GET     '/admin/EndRideNowApi'
+
+Location: 'Admin\ApiControllerRideFinal@EndRideNowApi'
+
+Request:
+
+    ride_id
+
+Push Notification:
+
+    {
+        message
+        {
+            to
+            notification
+            {
+                title
+                message
+            }
+            data
+            {
+                ride_id
+                notify_for
+                notify_type
+                notification_type
+            }
+        }
+    }
+
+Response:
+
+    success
+    message
+
+### UpdateCapLatLongApi
+
+Description: Updates current latitude and longitude of captain in captains table using captain id as key
+
+Route: GET     '/admin/UpdateCapLatLongApi'
+
+Location: 'Admin\ApiControllerRideFinal@UpdateCapLatLongApi'
+
+Request:
+
+    captain_id
+    current_lat
+    current_long
+
+Response:
+
+    message
+    success
+
+### RiderCancelRide
+
+Description: Called by Rider used to cancel ride. Sends push notification to device and updates rides and ride_main table. Was used in prototype only by rider
+
+Route: GET     '/admin/RiderCancelRide'
+
+Location: 'Admin\ApiControllerForBookings@RiderCancelRide'
+
+Request:
+
+    rider_id
+    ride_id
+
+Response:
+
+    message
+    success
+
+## Payment
+
+### BraintreeApi
+
+Description: Was an api call used to get payment token, not used in final prototype
+
+Route: GET     '/admin/BraintreeApi'
+
+Location: 'Admin\ApiController@BraintreeApi'
+
+Request:
+
+    userId
+
+Response:
+
+    message
+    success
+    data {
+        token
+    }
+
+### InsertPaymentApi
+
+Description: Called by rider, used to execute payment. Final prototype did not set values for paymentMethodType and paymentMethodNonce. Server set paymentMethodType to
+Paypal and nonce to empty. Uses rider_id and ride_id to look up user metas, price, etc to execute payment using braintree gateway. Responds with whether payment was successful.
+
+Route: GET     '/admin/InsertPaymentApi'
+
+       POST    '/admin/InsertPaymentApi'
+
+Location: 'Admin\ApiController@InsertPaymentApi'
+
+Request:
+
+    rider_id
+    ride_id
+    paymentMethodType: "" 
+    paymentMethodNonce: ""
+
+Response:
+
+    message
+    success
+
+### CaptainPaymentDetails
+
+Description: Used to get captain payment history.
+
+Route: GET     '/admin/CaptainPaymentDetails'
+
+       POST    '/admin/CaptainPaymentDetails'
+
+Location: 'Admin\ApiController@CaptainPaymentDetails'
+
+Request:
+
+    user_id
+
+Response:
+
+    status 
+    message
+    payments{[
+        payment_status
+        ride_status
+        paymentsID
+        ride_cost
+        adminCost
+    ]}
+    
+### RiderPaymentDetails
+
+Description: Used to get rider payment history
+
+Route: GET     '/admin/RiderPaymentDetails'
+
+       POST    '/admin/RiderPaymentDetails'
+
+Location: 'Admin\ApiController@RiderPaymentDetails'
+
+Request:
+
+    user_id
+
+Response:
+
+    status 
+    message
+    payments{[
+        payment_status
+        ride_status
+        paymentsID
+        ride_cost
+        adminCost
+    ]}
+
+### UpdatePaypalEmailApi
+
+Description: Called by captain, updates their associated paypal email by writing to captains table
+
+Route: GET     '/admin/UpdatePaypalEmailApi'
+
+Location: 'Admin\ApiControllerRideFinal@UpdatePaypalEmailApi'
+
+Request:
+
+    captain_id
+    paypal_email
+
+Response:
+
+    message
+    success
+
+## Profile
+
+### ViewProfileDriverApi
+
+Description: View Captain Profile. Get information from user_id
+
+Route: GET     '/admin/ViewProfileDriverApi'
+
+Location: 'Admin\ApiController@ViewProfileDriverApi'
+
+Request:
+
+    user_id
+
+Response:
+
+    message
+    success
+    data{
+        firstname
+        lastname
+        phonenumber
+        email
+        paypal_email
+    }
+
+### ViewProfileRiderApi
+
+Description: View Rider Profile. Get information from user_id
+
+Route: GET     '/admin/ViewProfileRiderApi'
+
+       POST    '/admin/ViewProfileRiderApi'
+
+Location: 'Admin\ApiController@ViewProfileRiderApi'
+
+Request:
+
+    user_id
+
+Response:
+
+    message
+    success
+    data{
+        'user_type'   
+        'id'          
+        'firstname'   
+        'lastname'    
+        'phonenumber' 
+        'email'       
+        'paypal_email'
+        'usercountry' 
+        'userstate'   
+        'usercity'    
+        'userimage'   
+        'useraddress' 
+        'status'      
+        'userzipcode' 
+        'createdat'   
+    }
+
+### RiderEditprofileApi
+
+Description: Used for updating Rider Profile
+
+Route: GET     '/admin/riderEditprofileApi'
+
+Location: 'Admin\ApiController@RiderEditprofileApi'
+
+Request:
+
+    firstname
+    lastname
+    phonenumber
+    password
+    email
+    card_holder_name
+    card_number
+    expirationDate
+    cvv
+    billing_state
+    billing_city
+    billing_zip
+    user_id
+
+Response:
+
+    success
+    message
+
+### CaptainEditprofileApi
+
+Description: Used for updating Captain Profile
+
+Route: GET     '/admin/captainEditprofileApi'
+
+Location: 'Admin\ApiController@CaptainEditprofileApi'
+
+Request:
+
+    firstname
+    lastname
+    phonenumber
+    password
+    email
+    paypal_email
+    user_id
+
+Response:
+
+    message
+    success
+
+### FeedbackApi
+
+Description: Called by rider or captain, sends email to admin with user name, email, phone, and content. We get the other information using user_id as key and content from the messages 
+field.
+
+Route: GET     '/admin/FeedbackApi'
+
+Location: 'Admin\ApiController@FeedbackApi'
+
+Request:
+
+    user_id
+    messages
+
+Response:
+
+    success
+    message   
+
+## Ride Details 
+
+### CaptainRideDetailApi
+
+Description: Captain Ride details
+
+Route: GET     '/admin/CaptainRideDetailApi'
+
+Location: 'Admin\ApiController@CaptainRideDetailApi'
+
+Request:
+
+    ride_id
+
+Response:
+
+    message
+    success
+    data {
+        'aboard' 
+        'boatname' 
+        'boatimage' 
+        'ride_id' 
+        'source_address' 
+        'source_lat' 
+        'source_long' 
+        'destination_address' 
+        'destination_lat' 
+        'destination_long' 
+        'pickup_date_time' 
+        'pickup_time'
+        'ride_status' 
+        'nooftrips' 
+        'tripcost' 
+        'no_of_seats' 
+        riders{[
+            'firstname'
+            'lastname'
+            'phonenumber'
+            'email'
+            'userzipcode'
+            'userimage'
+            'userzipcode'
+            'id'
+            'rating'
+            'submited'
+            'payment_status'
+            'pickupdate'
+            'bookingdate'
+            'rider_id'
+            'no_of_seats'
+            'total_price'
+        ]}        
+    }
+    
+### RideDetailApi
+
+Description: Rider Ride Details
+
+Route: GET     '/admin/RideDetailApi'
+
+Location: 'Admin\ApiController@RideDetailApi'
+
+Request:
+
+    ride_id
+    rider_id
+Response:
+
+    message
+    success
+    data {
+            'id'
+            'ride_id'
+            'source_address'
+            'destination_address'
+            'source_lat'
+            'source_long'
+            'destination_lat'
+            'destination_long'
+            'bookingdate'
+            'no_of_seats'
+            'total_price'
+            'ride_status'
+            'pickup_date_time'
+            'capimg'
+            'captain_name'
+            'phonenumber'
+            'boatimage'
+            'boatname'
+            'rating'
+		    'submited'
+            'captain_id'
+		    'ride_started'
+    }
+
+
+
+### MyRidesListingApi
+
+Description: Called by riders, queries rides table using ride_status and user id as keys, where payment status is 1 to return list of
+rides with their details. 
+
+Route: GET     '/admin/MyRidesListingApi'
+
+Location: 'Admin\ApiController@MyRidesListingApi'
+
+Request:
+
+    user_id
+    ride_status
+
+Response:
+
+    {
+        message
+        success
+        data[{
+            'id'
+            'ride_id'
+            'ride_status'
+            'source_address'
+            'destination_address'
+            'source_lat'
+            'source_long'
+            'captainname'
+            'captainlastname'
+            'boatname'
+            'boatimage'
+            'pickupdate'
+            'totalcost'
+        }]
+    }
+
+
+### CapRidesListingApi
+
+Description: Called by captains, queries ride_mains and rides tables using ride_status and user id as keys, where payment status is 1 to return list of
+rides with their details. 
+
+Route: GET     '/admin/CapRidesListingApi'
+
+Location: 'Admin\ApiController@CapRidesListingApi'
+
+Request:
+
+    captain_id
+
+Response:
+
+    {
+        message
+        success
+        data[{
+            rideinfo[{
+                'total_price'
+                'no_of_seats'
+            }]
+            'ride_id'
+            'source_address'
+            'destination_address'
+            'pickup_date_time'
+            'ride_status'
+            'total_price'
+            'no_of_seats'
+        }]
+    }
+
+
+
+### RideRidersInfoApi
+
+Description: Called by captain on submitting rating and ride details. Gets rider info of each rider associated with a ride.
+
+Route: GET     '/admin/RideRidersInfoApi'
+
+Location: 'Admin\ApiController@RideRidersInfoApi'
+
+Request:
+
+    ride_id
+
+Response:
+
+    message
+    success
+    data[{        
+        riders[{
+            'firstname'
+            'lastname'
+            'phonenumber'
+            'email'
+            'userzipcode'
+            'userimage'
+            'userzipcode'
+            'id'
+            'rating'
+            'submited'
+            'payment_status'
+            'pickupdate'
+            'bookingdate'
+            'rider_id'
+            'no_of_seats'
+            'total_price'
+        }]
+    }]
+
+## Rating
+
+### GiveRatingToRiderApi
+
+Description: Called by captain, gives rating to rider by writing to submitratings table
+
+Route: GET     '/admin/GiveRatingToRiderApi'
+
+Location: 'Admin\ApiControllerRideFinal@GiveRatingToRiderApi'
+
+Request:
+
+    rider_id 
+    captain_id
+    rating 
+    ride_id
+
+Response:
+
+    message
+    success
+    data
+    {
+       'rating' 
+    }
+
+### GiveRatingToCaptainApi
+
+Description: Called by rider, gives rating to captain by writing to submitratings table
+
+Route: GET     '/admin/GiveRatingToCaptainApi'
+
+Location: 'Admin\ApiControllerRideFinal@GiveRatingToCaptainApi'
+
+Request:
+
+    rider_id 
+    captain_id
+    rating 
+    ride_id     
+
+Response:
+
+    message
+    success
+    data
+    {
+       'rating' 
+    }
+
+
+## category 
+
+### ~~CaptainAccOrDecRequstFinal~~
+
+Description: Do not use
+
+Route: GET     '/admin/CaptainAccOrDecRequstFinal'
+
+Location: 'Admin\APIC@CaptainAccOrDecRequstFinal'
+
+Request:
+
+    
+
+Response:
+
+    
+
+### ~~AvailableCaptainBookRequstFinal~~
+
+Description: Do not use
+
+Route: GET     '/admin/AvailableCaptainBookRequst'
+
+Location: 'Admin\APIC@AvailableCaptainBookRequst'
+
+Request:
+
+    'source_address'
+    'destination_address'
+    'source_lat'
+    'source_long'
+    'destination_lat'
+    'destination_long'
+    'rider_id'
+    'no_of_seats'
+    'pickup_date_time'
+    'captain_id'
+    'total_price'
+
+Response:
+
+    message
+    success
+
+### Undocumented Requests
+
+GET     '/admin/FaqListingApi', 'Admin\ApiController@FaqListingApi'
+GET     '/admin/FaqDetailApi', 'Admin\ApiController@FaqDetailApi'
+GET     '/admin/TestAndroidPushApi', 'Admin\ApiControllerForBookingsTest@TestAndroidPushApi'
+
+GET     '/admin/cashedOut', 'Admin\ApiController@cashedOut'
+GET     '/home', 'HomeController@index')->name('home'
+GET     '/admin/dashboard', 'Admin\HomeController@dashboard')->name('admin.dashboard'
+Route::any('/admin/getState', 'Admin\AjaxController@getStates'
+Route::any('/admin/getCity', 'Admin\AjaxController@getCities'
+Route::any('/admin/productList', 'Admin\HomeController@productList'
+GET     '/admin/addProduct', 'Admin\HomeController@addProduct'
+Route::any('/admin/productEdit/{id}', 'Admin\HomeController@productEdit'
+Route::post('/admin/createProduct', 'Admin\HomeController@createProduct'
+Route::any('/admin/updateProduct', 'Admin\HomeController@updateProduct'
+Route::any('/admin/categoryDelete/{id}', 'Admin\HomeController@categoryDelete'
+Route::any('/admin/userDelete/{id}', 'Admin\HomeController@userDelete'
+Route::any('/admin/ProductDelete/{id}', 'Admin\HomeController@ProductDelete'
